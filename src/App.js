@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useReducer } from 'react';
+import React, { useState, useEffect, useRef, useReducer, memo } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Login from './Login';
@@ -8,10 +8,10 @@ import { loginReducer, initState } from './store/reducer';
 export const LoginContext = React.createContext();
 
 
-function Transaction(){
-  console.log('Transaction');
+const Transaction = memo(props => {
+  console.log('Transaction 验重复渲染问题');
   return <div>Transaction</div>
-}
+})
 
 function App() {
   const [state, dispatch] = useReducer(loginReducer, initState);
@@ -23,7 +23,7 @@ function App() {
           <Login />
           <Profile />
         </header>
-        <Transaction/>
+        <Transaction />
       </div>
     </LoginContext.Provider>
   );
