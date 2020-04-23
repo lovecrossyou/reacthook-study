@@ -8,13 +8,17 @@ import { loginReducer, initState } from './store/reducer';
 export const LoginContext = React.createContext();
 
 
-const Transaction = memo(props => {
+const Transaction = memo(() => {
   console.log('Transaction 验重复渲染问题');
   return <div>Transaction</div>
 })
 
+
+
+
 function App() {
   const [state, dispatch] = useReducer(loginReducer, initState);
+
   return (
     <LoginContext.Provider value={{ state, dispatch }}>
       <div className="App">
